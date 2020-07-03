@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js よしぴー</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>現在{{ number }} 回だよ</p>
+      <button @[event]="countUp">押すとカウントされるよ</button>
+
+      <input type="text" v-model="message">
+      <p>{{ message }}</p>
+
+      <div>
+        <p>{{ counter }}</p>
+        <button @click="counter += 1">１＋される</button>
+        <p>{{ ltt }}</p>
+      </div>
+
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

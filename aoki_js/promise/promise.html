@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Promise</title>
+    
+  </head>
+  <body>
+
+    <script>
+      // Promise
+      // 1 状態(ok/ng)
+      // 2 Promiseチェーン
+
+      // callack
+      // 引数に状態が入る(ok, ng) 一つの場合はok
+
+      function promiseTest1() {
+        return new Promise((ok, ng) => {
+          ok('プロミス１');
+          ng('プロミス１エラーです');
+        })
+      }
+      // Promiseが返ってくる ok→resolve,ng→reject
+      console.log(promiseTest1());
+
+      const promiseTest2 = new Promise( ok => {
+        ok('プロミス2です');
+      });
+      // この書き方(functionなし)だと()が不要
+      console.log(promiseTest2);
+
+      function promiseTest3(input){
+        return new Promise( ok => {
+          ok(`プロミス${input}です`);
+        });
+      };
+      console.log(promiseTest3('太郎'));
+
+      // thenはokパターン, catchはngパターン
+      // 下に記述した関数を呼び出している
+      // promiseTest4(300, 2)
+      // .then(change1 => promiseTest4(change1, 3))
+      // .then(change2 => promiseTest4(change2, 4))
+      // .catch(e => console.log(e));
+
+      // function promiseTest4(pay, seconds){
+      //   return new Promise((ok, ng) => {
+      //     setTimeout(() => {
+      //       if (pay > 100) {
+      //       let change = pay - 100;
+      //       ok(change);
+      //       console.log(`${seconds}秒、お釣りは${change}です`);
+      //       };
+      //       ng('お金がありません');
+      //     }, seconds * 1000)
+      //   });
+      // };
+
+      
+      function pt(pay, seconds){
+        return new Promise((ok, ng)=> {
+          setTimeout(()=>{
+            let change = pay - 200;
+            if(change >= 0){
+              console.log(`残金${change}円 ${seconds}秒`);
+              ok(change);
+            }
+            ng('エラーです');
+          }, seconds * 1000)
+        })
+      };
+
+      pt(600, 1)
+      .then( change1 => pt(change1, 2))
+      .then( c => pt(c, 3))
+      .then( change3 => pt(change3, .5))
+      .catch( e => console.error(`${e}:こんなエラー出てますよ`))
+
+      // promiseTest4(80).then((change1) => {
+      //   console.log(change1);
+      //   return promiseTest4(change1); // Promiseでラップ ok(value),ここで200-100される
+      // }).then(change2 => {
+      //   console.log(change2);
+      // }).catch(e => console.log(e));
+    </script>
+    
+  </body>
+</html>
