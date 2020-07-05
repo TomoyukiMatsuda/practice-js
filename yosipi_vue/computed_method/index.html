@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js よしぴー</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+
+    <div id="app">
+      <p>{{ counter }}</p>
+      <button @click="counter += 1">+1</button>
+      <p>{{ otherCounter }}</p>
+      <button @click="otherCounter += 1">別の+1</button>
+      <p>{{ lessThan3Computed }}</p>
+      <p>{{ lessThan3Method() }}</p>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
