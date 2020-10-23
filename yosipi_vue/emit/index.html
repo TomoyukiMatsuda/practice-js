@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js よしぴー</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <component :total-number="10" v-on:my-click="incrementNumber"></component>
+      <p>{{ number }}</p>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
